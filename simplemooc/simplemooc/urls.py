@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('core/', include(('simplemooc.core.urls', 'core'), namespace='core')),
+    path('', include(('simplemooc.core.urls', 'core'), namespace='core')),
     path('admin/', admin.site.urls),
 ]
