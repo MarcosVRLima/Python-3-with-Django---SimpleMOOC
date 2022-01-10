@@ -1,0 +1,47 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="ui secondary segment grey very padded">
+    <div class="column">
+      <p><h1 class="ui black header">Listagem de Cursos do SimpleMOOC</h1></p>
+      <p>
+        <h3 class="ui black header">Abaixo a lista de cursos disponíveis na plataforma.</h3>  
+      </p>
+    </div>
+</div>
+
+<div class="ui segment very padded">
+    {% for course in courses %}
+    <div class="ui container grey segment">
+        <div class="ui stackable two column left align grid">
+            <div class="four wide column">
+                
+                <a href="{{ course.get_absolute_url }}">
+                {% if course.image %}
+                <img class='ui medium centered rounded image' src="{{ course.image.url }}" alt="{{ course.name }}" />
+                {% else %}
+                <img class='ui medium centered rounded image' src="{% static 'img/no-image.png' %}" alt="{{ course.name }}" />
+                {% endif %}
+                </a>
+                
+            </div>
+            <div class="twelve wide column">
+                <h4 class="ui header"><a href="{{ course.get_absolute_url }}" title="">{{ course.name }}</a></h4>
+                {{ course.description|linebreaks }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% if not courses %}
+    <div class="pure-g-r content-ribbon">
+        <div class="pure-u-1">
+            <div class="l-box">
+                <p>Nenhum curso está disponível na plataforma</p>
+            </div>
+        </div>
+    </div>    
+    {% endif %}
+</div>
+{% endblock %}

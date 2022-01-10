@@ -1,0 +1,68 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="ui secondary segment grey very padded">
+    <div class="column">
+      <p><h1 class="ui black header">{{ course }}</h1></p>
+      <p>
+        <h3 class="ui black header">{{ course.description }}</h3>  
+      </p>
+      <button class="ui primary button">
+        Inscreva-se
+      </button>
+    </div>
+</div>
+
+<div class="ui segment very padded">
+    <div class="ui stackable two column left align grid">
+        <div class="twelve wide column">
+            <h2 class="ui header"><u>Sobre o Curso</u></h2>
+            {{ course.about|linebreaks }}
+        </div>
+        <div class="four wide column">
+                {% if course.image %}
+                <img class='ui medium centered rounded image' src="{{ course.image.url }}" alt="{{ course.name }}" />
+                {% else %}
+                <img class='ui medium centered rounded image' src="{% static 'img/no-image.png' %}" alt="{{ course.name }}" />
+                {% endif %}
+                <h3 class='ui header'>Dúvidas?</h3>
+                <button class="ui primary button" onclick="location.href='{% url 'core:contact' %}'">
+                    Fale Conosco!
+                </button>
+        </div>
+    </div>
+    <div class="ui stackable two column left align grid" id="contato">
+        <div class="six wide column">
+            <h3 class="ui header">Tire suas dúvidas sobre o curso</h3>
+            {% if is_valid %}
+            <div class="ui success message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Sua dúvidas foram enviadas com sucesso!
+                </div>
+            </div>
+            {% endif %}
+            <form class='ui form' action="#contato" method='POST'>
+                {% csrf_token %}
+                <fieldset>
+                    {% for field in form %}
+                    <div class="field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="ui red message">
+                            <i class="close icon"></i>
+                            <div class="">{{ field.errors }}</div>
+                        </div>
+                        {% endif %}
+                    </div>  
+                    {% endfor %}
+                    <button class="ui button" type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

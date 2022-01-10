@@ -14,7 +14,7 @@
           <a class="item" href="{% url 'core:home' %}"><i class="large home middle aligned icon"></i>Inicio</a>
         </div>
         <div class="item">
-          <a class="item"><i class="book icon"></i>Cursos</a>
+          <a class="item" href="{% url 'courses:index' %}"><i class="book icon"></i>Cursos</a>
         </div>
         <div class="item">
           <a class="item"><i class="comments icon"></i>Forum</a>
@@ -33,6 +33,7 @@
     </div>
     
     <div class="ui segments">
+      <br>
       
       {% block content %} {% endblock %}
 
