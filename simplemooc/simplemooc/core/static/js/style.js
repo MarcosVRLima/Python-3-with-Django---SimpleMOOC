@@ -1,7 +1,7 @@
 $(document).ready(function(){
     //button of sidebar
     $('.toggler').on('click', function() {
-        $('.ui.sidebar').sidebar('toggle');
+        $('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');
     });
 
     //button of close in message

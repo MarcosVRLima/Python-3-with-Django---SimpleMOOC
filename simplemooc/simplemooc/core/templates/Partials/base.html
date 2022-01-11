@@ -8,28 +8,32 @@
     <title>Simple MOOC Layout - Pure CSS</title>
   </head>
   <body>
-    <div class="ui inverted grey labeled icon left inline vertical sidebar menu">
-      <div class="ui celled list">
-        <div class="item">
-          <a class="item" href="{% url 'core:home' %}"><i class="large home middle aligned icon"></i>Inicio</a>
-        </div>
-        <div class="item">
-          <a class="item" href="{% url 'courses:index' %}"><i class="book icon"></i>Cursos</a>
-        </div>
-        <div class="item">
-          <a class="item"><i class="comments icon"></i>Forum</a>
-        </div>
-        <div class="item">
-          <a class="item" href="{% url 'core:contact' %}"><i class="address card icon"></i>Contato</a>
-        </div>
-        <div class="item">
-          <a class="item"><i class="sign-in icon"></i>Entrar</a>
+    <div class="ui inverted grey labeled icon left sidebar segment">
+      <div class="ui secondary vertical menu">
+        <div class="ui animated list">
+          <div class="item">
+            <a class="item" href="{% url 'core:home' %}"><i class="inverted large home icon"></i><h3 class='ui grey inverted header'>Início</h3></a>
+          </div>
+          <div class="item">
+            <a class="item" href="{% url 'courses:index' %}"><i class="inverted large book icon"></i><h3 class='ui grey inverted header'>Cursos</h3></a>
+          </div>
+          <div class="item">
+            <a class="item"><i class="inverted large comments icon"></i><h3 class='ui grey inverted header'>Fórum</h3></a>
+          </div>
+          <div class="item">
+            <a class="item" href="{% url 'core:contact' %}"><i class="inverted large address card icon"></i><h3 class='ui grey inverted header'>Contato</h3></a>
+          </div>
+          <div class="item">
+            <a class="item"><i class="inverted large sign-in icon"></i><h3 class='ui grey inverted header'>Entrar</h3></a>
+          </div>
         </div>
       </div>
     </div>
     
-    <div class="ui inverted grey fixed stackable menu huge">
-        <a class="item toggler"><i class="sidebar icon"></i>SIMPLE MOOC</a>
+    <div class="ui inverted grey fixed one item compact menu huge">
+      <div class="ui center aligned container segment inverted grey">
+          <a class="item toggler"><i class="sidebar icon"></i>SIMPLE MOOC</a>
+      </div>
     </div>
     
     <div class="ui segments">
