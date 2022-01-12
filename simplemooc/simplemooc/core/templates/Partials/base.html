@@ -25,6 +25,9 @@
           </div>
           {% if user.is_authenticated %}
           <div class="item">
+            <a class="item" href="{% url 'accounts:dashboard' %}"><i class="inverted large chart bar icon"></i><h3 class='ui grey inverted header'>Dashboard</h3></a>
+          </div>
+          <div class="item">
             <a class="item" href="{% url 'accounts:logout' %}"><i class="inverted large sign-in icon"></i><h3 class='ui grey inverted header'>Sair</h3></a>
           </div>
           {% else %}

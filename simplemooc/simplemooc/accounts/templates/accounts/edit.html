@@ -1,0 +1,47 @@
+{% extends 'accounts/dashboard.html' %}
+
+{% block breadcrumb_content %}
+    {{ block.super }}
+    <i class="right chevron icon divider"></i>
+    <a class="section" href="{% url 'accounts:edit' %}">Editar conta</a>
+{% endblock breadcrumb_content %}
+
+{% block dashboard_content %}
+    {% if success %}
+    <div class="ui success message">
+        <i class="close icon"></i>
+        <div class="header">
+            Os dados foram alterados com sucesso!
+        </div>
+    </div>
+    {% endif %}
+
+    <form class="ui form" action="#edit" method='POST'>
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="field">
+            {{ field.label_tag}}
+            <div class="ui left icon input">
+                {{ field }}
+                {% if field.name == 'username' %}<i class="user icon"></i>
+                {% elif field.name == 'email' %}<i class="envelope icon"></i>
+                {% else %}<i class="user id card icon"></i>
+                {% endif %}
+            </div>
+            
+            {% if field.errors %}
+            <div class="ui red message">
+                <i class="close icon"></i>
+                <div class="">{{ field.errors }}</div>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <div class="center aligned">
+            <div class="ui form">
+                <button type="submit" class="ui blue right labeled icon button"><i class="signup icon"></i>Salvar modificações</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock dashboard_content %}

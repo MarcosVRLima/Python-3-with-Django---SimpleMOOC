@@ -9,10 +9,14 @@ $(document).ready(function(){
         $(this).closest('.message').transition('fade');
     });
 
-    //transition of card login
+    //transition of card login and dashboard
     $('.ui.fluid.card.login').transition('zoom');
+    $('.ui.segment.dashboard').transition('zoom');
 
     //animation of message's
     $('.ui.red.message').transition('shake');
     $('.ui.success.message').transition('tada');
+
+    //accordion of menu in dashboard
+    $('.ui.accordion').accordion();
 });

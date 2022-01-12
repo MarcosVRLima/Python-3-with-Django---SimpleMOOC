@@ -146,5 +146,5 @@ CONTACT_EMAIL = 'marcos.viniciusk19@gmail.com' #email que vai receber
 #AUTH
 
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = 'core:home'
+LOGIN_REDIRECT_URL = 'accounts:dashboard'
 LOGOUT_URL = 'accounts:logout'

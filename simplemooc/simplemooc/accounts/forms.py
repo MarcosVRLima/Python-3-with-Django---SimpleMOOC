@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import fields
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField(label='E-mail')
@@ -20,3 +21,17 @@ class RegisterForm(UserCreationForm):
             user.save()
 
         return user
+
+class EditAccountForm(forms.ModelForm):
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        queryset = User.objects.filter(email = email).exclude(pk = self.instance.pk)
+
+        if queryset.exists():
+            raise forms.ValidationError('Este e-mail já está vinculado a outro usuário.')
+        return email
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']
