@@ -1,0 +1,55 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<br>
+<div class="ui segment very padded">
+    <div class="ui centered column stackable grid container">
+        {% if form.username.value != None %}
+        <div class="ui red message">
+            <i class="close icon"></i>
+            {{ form.non_field_errors.as_text }}
+        </div>
+        {% endif %}
+        <div class="eight wide column">
+            <div class='ui fluid card login transition hidden'>
+                <div class="content">
+                    <div class='center aligned'>
+                        <h2>Login</h2>
+                    </div>
+                </div>
+        
+                <div class="content">
+                    <form class="ui form" action="#login" method='POST'>
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="field">
+                            {{ field.label_tag}}
+                            <div class="ui left icon input">
+                                {{ field }}
+                                {% if field.name == 'username'%}<i class="user icon"></i>
+                                {% elif field.name == 'password'%}<i class="key icon"></i>
+                                {% endif %}
+                                {% if field.errors %}
+                                <div class="ui red message">
+                                    <i class="close icon"></i>
+                                    <div class="">{{ field.errors }}</div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="center aligned">
+                            <div class="ui form">
+                                <button type="submit" class="ui blue right labeled icon button"><i class="sign-in icon"></i>Entrar</button>
+                                <a class="ui red right labeled icon button" href="{% url 'accounts:register' %}"><i class="signup icon"></i>Cadastrar-se</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+

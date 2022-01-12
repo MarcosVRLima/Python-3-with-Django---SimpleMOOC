@@ -8,4 +8,11 @@ $(document).ready(function(){
     $('.message .close').on('click', function() {
         $(this).closest('.message').transition('fade');
     });
+
+    //transition of card login
+    $('.ui.fluid.card.login').transition('zoom');
+
+    //animation of message's
+    $('.ui.red.message').transition('shake');
+    $('.ui.success.message').transition('tada');
 });

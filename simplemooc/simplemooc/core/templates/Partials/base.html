@@ -23,9 +23,15 @@
           <div class="item">
             <a class="item" href="{% url 'core:contact' %}"><i class="inverted large address card icon"></i><h3 class='ui grey inverted header'>Contato</h3></a>
           </div>
+          {% if user.is_authenticated %}
           <div class="item">
-            <a class="item"><i class="inverted large sign-in icon"></i><h3 class='ui grey inverted header'>Entrar</h3></a>
+            <a class="item" href="{% url 'accounts:logout' %}"><i class="inverted large sign-in icon"></i><h3 class='ui grey inverted header'>Sair</h3></a>
           </div>
+          {% else %}
+          <div class="item">
+            <a class="item" href="{% url 'accounts:login' %}"><i class="inverted large sign-in icon"></i><h3 class='ui grey inverted header'>Entrar</h3></a>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>

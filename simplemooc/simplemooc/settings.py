@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'simplemooc.core',
     'simplemooc.courses',
+    'simplemooc.accounts',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,9 @@ EMAIL_HOST_PASSWORD = 'senhaemail' #senha para login
 EMAIL_PORT = 587
 
 CONTACT_EMAIL = 'marcos.viniciusk19@gmail.com' #email que vai receber
+
+#AUTH
+
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'core:home'
+LOGOUT_URL = 'accounts:logout'

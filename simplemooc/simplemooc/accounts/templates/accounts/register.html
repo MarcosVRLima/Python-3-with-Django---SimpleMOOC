@@ -1,0 +1,50 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<br>
+<div class="ui segment very padded">
+    <div class="ui centered column stackable grid container">
+        <div class="eight wide column">
+            <div class='ui fluid card login transition hidden'>
+                <div class="content">
+                    <div class='center aligned'>
+                        <h2>Cadastre-se</h2>
+                    </div>
+                </div>
+        
+                <div class="content">
+                    <form class="ui form" action="#login" method='POST'>
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="field">
+                            {{ field.label_tag}}
+                            <div class="ui left icon input">
+                                {{ field }}
+                                {% if field.name == 'username' %}<i class="user icon"></i>
+                                {% elif field.name == 'email' %}<i class="envelope icon"></i>
+                                {% else %}<i class="key icon"></i>
+                                {% endif %}
+                            </div>
+                            
+                            {% if field.errors %}
+                            <div class="ui red message">
+                                <i class="close icon"></i>
+                                <div class="">{{ field.errors }}</div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <div class="center aligned">
+                            <div class="ui form">
+                                <button type="submit" class="ui blue right labeled icon button"><i class="signup icon"></i>Cadastrar-se</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
