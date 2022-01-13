@@ -134,17 +134,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #EMAIL
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Nome <email@gmail.com>' #email que vai enviar
+DEFAULT_FROM_EMAIL = 'nome <email@gmail.com>' #email que vai enviar
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email@gmail.com' #email para login
 EMAIL_HOST_PASSWORD = 'senhaemail' #senha para login
 EMAIL_PORT = 587
 
-CONTACT_EMAIL = 'marcos.viniciusk19@gmail.com' #email que vai receber
+CONTACT_EMAIL = 'email@gmail.com' #email que vai receber
 
 #AUTH
 
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'accounts:dashboard'
 LOGOUT_URL = 'accounts:logout'
+AUTH_USER_MODEL = 'accounts.User'

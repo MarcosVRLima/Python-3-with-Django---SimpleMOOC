@@ -32,7 +32,7 @@
                         <i class="dropdown icon"></i>
                         Configurações da conta
                     </a>
-                    <div class="content">
+                    <div class="{% if request.resolver_match.url_name == 'edit' or request.resolver_match.url_name == 'edit_password' %}active{% endif %} content">
                         <div class'item'>
                             <a class="item" href="{% url 'accounts:edit' %}">
                                 Editar informações
