@@ -1,0 +1,19 @@
+<div class="item">
+    <a class="title">
+        <i class="dropdown icon"></i>
+        Meus cursos
+    </a>
+    <div class="content">
+        {% for enrollment in enrollments %}
+        <div>
+            <a class="item">
+                {{ enrollment.course }}
+            </a>
+        </div>
+        {% empty %}
+        <div class='item'>
+            Nenhum curso disponível
+        </div>
+        {% endfor %}
+    </div>
+</div>

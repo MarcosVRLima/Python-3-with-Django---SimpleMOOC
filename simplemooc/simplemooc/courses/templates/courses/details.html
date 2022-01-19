@@ -9,9 +9,9 @@
       <p>
         <h3 class="ui black header">{{ course.description }}</h3>  
       </p>
-      <button class="ui primary button">
+      <a class="ui primary button" href="{% url 'courses:enrollment' course.slug %}">
         Inscreva-se
-      </button>
+      </a>
     </div>
 </div>
 
@@ -19,7 +19,7 @@
     <div class="ui stackable two column left align grid">
         <div class="twelve wide column">
             <h2 class="ui header"><u>Sobre o Curso</u></h2>
-            {{ course.about|linebreaks }}
+            <h5 class="">{{ course.about|linebreaks }}</h5>
         </div>
         <div class="four wide column">
                 {% if course.image %}

@@ -7,15 +7,6 @@
 {% endblock breadcrumb_content %}
 
 {% block dashboard_content %}
-    {% if success %}
-    <div class="ui success message">
-        <i class="close icon"></i>
-        <div class="header">
-            Os dados foram alterados com sucesso!
-        </div>
-    </div>
-    {% endif %}
-
     <form class="ui form" action="#edit" method='POST'>
         {% csrf_token %}
         {% for field in form %}

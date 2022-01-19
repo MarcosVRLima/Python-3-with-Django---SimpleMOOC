@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, get_user_model, update_session_auth_hash
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm, SetPasswordForm
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, EditAccountForm, PasswordResetForm
 from .models import PasswordReset
 
+from simplemooc.courses.models import Enrollment
 User = get_user_model()
 
 # Create your views here.
@@ -13,22 +14,24 @@ User = get_user_model()
 @login_required
 def dashboardPageView(request):
     template_name = 'accounts/dashboard.html'
-    return render(request, template_name)
+    context = {}
+    context['enrollments'] = Enrollment.objects.filter(user = request.user).order_by('course')
+
+    return render(request, template_name, context)
 
 def registerPageView(request):
     template_name = 'accounts/register.html'
+    context = {}
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            user = authenticate(username = form.cleaned_data['username'], password = form.cleaned_data['password1'])
-            login(request, user)
-            return redirect('accounts:dashboard')
+            context['success'] = True
     else:
         form = RegisterForm()
 
-    context = {'form': form,}
+    context['form'] = form
     return render(request, template_name, context)
 
 def passwordResetPageView(request):
@@ -67,8 +70,9 @@ def editPageView(request):
         form = EditAccountForm(request.POST, instance = request.user)
         if form.is_valid():
             form.save()
-            form = EditAccountForm(instance=request.user)
-            context['success'] = True
+            context['color'] = 'success'
+            context['message'] = 'Os dados foram alterados com sucesso!'
+            return render(request, 'accounts/dashboard.html', context)
     else:
         form = EditAccountForm(instance=request.user)
 
@@ -84,7 +88,9 @@ def editPasswordPageView(request):
     if form.is_valid():
         form.save()
         update_session_auth_hash(request, form.user) #Permanece logado apos alterar a senha
-        context['success'] = True
+        context['color'] = 'success'
+        context['message'] = 'A senha foi alterada com sucesso!'
+        return render(request, 'accounts/dashboard.html', context)
 
     context['form'] = form
     return render(request, template_name, context)

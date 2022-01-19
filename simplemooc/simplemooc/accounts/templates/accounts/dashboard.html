@@ -1,9 +1,19 @@
 {% extends 'partials/base.html' %}
 
+{% load courses_tags %}
+
 {% block content %}
 <br>
 
 <div class="ui segment very padded">
+        {% if color %}
+        <div class="ui {{color}} message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ message }}
+            </div>
+        </div>
+        {% endif %}
     <div class="ui stackable grid">
         <div class="column row">
             <div class="ui breadcrumb" style='padding-left: 15px;'>
@@ -20,25 +30,33 @@
                         Meus cursos
                     </a>
                     <div class="content">
-                        <div class'item'>
+                        {% load_my_courses user as enrollments%}  
+                        {% for enrollment in enrollments %}
+                        <div>
                             <a class="item">
-                                Curso 1
+                                {{ enrollment.course }}
                             </a>
                         </div>
+                        {% empty %}
+                        <div class='item'>
+                            Nenhum curso disponível
+                        </div>
+                        {% endfor %}
                     </div>
                 </div>
+
                 <div class="item">
                     <a class="title">
                         <i class="dropdown icon"></i>
                         Configurações da conta
                     </a>
                     <div class="{% if request.resolver_match.url_name == 'edit' or request.resolver_match.url_name == 'edit_password' %}active{% endif %} content">
-                        <div class'item'>
+                        <div>
                             <a class="item" href="{% url 'accounts:edit' %}">
                                 Editar informações
                             </a>
                         </div>
-                        <div class'item'>
+                        <div>
                             <a class="item" href="{% url 'accounts:edit_password' %}">
                                 Editar senha
                             </a>
